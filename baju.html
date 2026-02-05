@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endeisme | Apparel Collection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@300;400;700&display=swap');
+        body { font-family: 'Outfit', sans-serif; background-color: #0a0a0a; color: white; }
+        .heading-font { font-family: 'Archivo Black', sans-serif; }
+        
+        .modal-content::-webkit-scrollbar { width: 4px; }
+        .modal-content::-webkit-scrollbar-thumb { background: #bef264; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <nav class="p-6 flex justify-between items-center border-b border-zinc-900 sticky top-0 bg-[#0a0a0a]/90 backdrop-blur-md z-50">
+        <a href="index.html" class="heading-font text-xl italic tracking-tighter text-white">ENDE<span class="text-lime-400">ISME.</span></a>
+        <a href="index.html" class="text-xs font-bold uppercase border border-zinc-700 px-4 py-2 hover:bg-white hover:text-black transition">← Kembali</a>
+    </nav>
+
+    <main class="max-w-7xl mx-auto py-16 px-6">
+        <div class="mb-16">
+            <h1 class="text-6xl heading-font mb-2">APPAREL<span class="text-lime-400">.</span></h1>
+            <p class="text-zinc-500 uppercase tracking-widest text-sm font-bold">Premium Heavyweight Series / 6 Items</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+            
+            <div class="group">
+                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
+                    <img src="img/baju1.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <button onclick="openModal('img/baju1.webp', 'Ego Death Oversized Tee', 'IDR 189.000', 'Edisi ini kolaborasi Garuda dan Tenun Ikat dengan pilihan warna yang lebih kekinian sebagai wujud dari Tagline Timur Pantang Mundur untuk bersaing di Industri Kreatif.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold uppercase tracking-tight">Ego Death Oversized Tee</h3>
+                <p class="text-zinc-500 text-sm mb-1 italic">Black / 24s Cotton</p>
+                <p class="text-lime-400 font-bold font-mono">IDR 189.000</p>
+            </div>
+
+            <div class="group">
+                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
+                    <img src="img/baju2.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <button onclick="openModal('img/baju2.webp', 'Manifesto Hoodie', 'IDR 349.000', 'Flores, dari bahasa Portugis yang berarti bunga adalah sebuah pulau yang berada di wilayah administrasi Provinsi Nusa Tenggara Timur, Indonesia. Kata Flores berasal dari bahasa Portugis yaitu cabo de flores  yang berarti Tanjung bunga. Nama tersebut semula di berikan oleh S.M. Cabot untuk menyebut wilayah timur dari pulau Flores. Akhirnya di pakai secara resmi sejak tahun 1636 oleh gubernur jenderal hindia belanda Hendrik Brouwe')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold uppercase tracking-tight">Manifesto Hoodie</h3>
+                <p class="text-zinc-500 text-sm mb-1 italic">Charcoal / Heavy Fleece</p>
+                <p class="text-lime-400 font-bold font-mono">IDR 349.000</p>
+            </div>
+
+            <div class="group">
+                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
+                    <img src="img/baju3.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <button onclick="openModal('img/baju3.webp', 'Vandal Signature', 'IDR 189.000', 'Edisi Grafity Part 2, menyesuaikan Genre Musik Hip-Hop terkhususnya musik Hip-Hop Indonesia Timur yang lagi exis dan mempengaruhi life style.Tagline  Timur Pantang Munduruntuk bersaing di Industri Kreatif.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold uppercase tracking-tight">Vandal Signature</h3>
+                <p class="text-zinc-500 text-sm mb-1 italic">White / Screenprinted</p>
+                <p class="text-lime-400 font-bold font-mono">IDR 189.000</p>
+            </div>
+
+            <div class="group">
+                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
+                    <img src="img/baju4.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <button onclick="openModal('img/baju4.webp', 'Cyber-Street Outer', 'IDR 429.000', 'Edisi TAMENG ENDEISME Edisi ini kita meng kolaborasi kan bentuk Tameng & Motif Tenun Ikat Ende Lio dengan pesan bahwa kita harus berjuang mempertahankan budaya & budaya juga adalah pertahan kita')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold uppercase tracking-tight">Cyber-Street Outer</h3>
+                <p class="text-zinc-500 text-sm mb-1 italic">Obsidian / Windbreaker</p>
+                <p class="text-lime-400 font-bold font-mono">IDR 429.000</p>
+            </div>
+
+            <div class="group">
+                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
+                    <img src="img/baju2.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <button onclick="openModal('img/baju2.webp', 'Essential Drop Shoulder', 'IDR 175.000', 'Potongan bahu yang rendah untuk siluet yang lebih santai namun tetap terlihat tegas.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold uppercase tracking-tight">Essential Drop Shoulder</h3>
+                <p class="text-zinc-500 text-sm mb-1 italic">Beige / Premium Cotton</p>
+                <p class="text-lime-400 font-bold font-mono">IDR 175.000</p>
+            </div>
+
+            <div class="group">
+                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
+                    <img src="img/baju2.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <button onclick="openModal('img/baju2.webp', 'Rebirth Longsleeve', 'IDR 219.000', 'Lengan panjang dengan detail bordir pada pergelangan tangan. Eksklusif dan terbatas.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold uppercase tracking-tight">Rebirth Longsleeve</h3>
+                <p class="text-zinc-500 text-sm mb-1 italic">Black / Long Sleeve</p>
+                <p class="text-lime-400 font-bold font-mono">IDR 219.000</p>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="productModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex items-center justify-center p-4">
+        <div class="bg-zinc-900 max-w-4xl w-full max-h-[90vh] overflow-y-auto modal-content flex flex-col md:flex-row border border-zinc-800">
+            <div class="w-full md:w-1/2 bg-black">
+                <img id="modalImg" src="" class="w-full h-full object-cover">
+            </div>
+            <div class="w-full md:w-1/2 p-10 flex flex-col justify-center">
+                <button onclick="closeModal()" class="self-end text-zinc-500 hover:text-white mb-4 uppercase text-xs font-bold">Close ✕</button>
+                <h2 id="modalTitle" class="text-3xl heading-font mb-2 leading-tight uppercase"></h2>
+                <p id="modalPrice" class="text-lime-400 font-mono text-xl mb-6 font-bold"></p>
+                <div class="h-px bg-zinc-800 w-full mb-6"></div>
+                <p id="modalDesc" class="text-zinc-400 text-sm leading-relaxed mb-8 italic"></p>
+                
+                <div class="mb-8">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-3">Pilih Ukuran</p>
+                    <div class="flex gap-2">
+                        <button class="w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:bg-white hover:text-black transition">S</button>
+                        <button class="w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:bg-white hover:text-black transition">M</button>
+                        <button class="w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:bg-white hover:text-black transition">L</button>
+                        <button class="w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:bg-white hover:text-black transition">XL</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+<footer class="bg-zinc-950 border-t border-zinc-900 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-20">
+                
+                <div class="space-y-6">
+                    <img src="img/logo.png" alt="Logo" class="h-10 w-auto opacity-80">
+                    <h3 class="heading-font text-xl text-lime-400">OUR LEGACY.</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Lahir dari hiruk-pikuk jalanan pada tahun 2024, <span class="text-white font-bold">ENDEISME</span> bukan sekadar label pakaian. Kami adalah manifestasi dari pemberontakan terhadap gaya yang membosankan. 
+                        <br><br>
+                        Tujuan kami jelas: Menyediakan "armor" bagi mereka yang bangga berpijak di tanah sendiri dan berani menunjukkan identitas kulturnya melalui streetwear berkualitas tinggi.
+                    </p>
+                    <div class="flex space-x-5">
+                        <a href="https://www.instagram.com/endeisme/" target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">Instagram</a>
+                        <a href="https://www.tiktok.com/@ryan_tiii" target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">TikTok</a>
+                        <a href="https://wa.me/628133920005930?text=Halo%20Endeisme%2C%20saya%20ingin%20tanya%20seputar%20produk%20terbaru." target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="heading-font text-xl text-white">HEADQUARTER<span class="text-lime-400">.</span></h3>
+                   <div class="w-full h-64 bg-zinc-900 border border-zinc-800 grayscale hover:grayscale-0 transition duration-500">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3536.8689733512574!2d121.64011001586913!3d-8.842059272338833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dad590009b98359%3A0x7d14dd0fc3f0f51e!2sEndeisme%20Kedai!5e1!3m2!1sid!2sid!4v1770260795533!5m2!1sid!2sid" 
+                            class="w-full h-full" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <p class="text-zinc-500 text-xs">Jl. Streetwear No. 101, Distrik Kreatif, Indonesia.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="heading-font text-xl text-white">GET UPDATES<span class="text-lime-400">.</span></h3>
+                    <p class="text-zinc-500 text-sm italic text-balance">Jadilah yang pertama tahu tentang rilisan terbatas dan kolaborasi eksklusif kami.</p>
+                    <div class="flex flex-col space-y-4">
+                        <input type="email" placeholder="YOUR EMAIL ADDRESS" class="bg-transparent border border-zinc-800 px-4 py-3 text-xs focus:border-lime-400 outline-none transition uppercase">
+                        <button class="bg-white text-black py-3 font-black text-xs uppercase hover:bg-lime-400 transition">Join Movement</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-zinc-900 pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold text-zinc-600 tracking-[0.2em] uppercase">
+                <p>&copy; 2026 ENDEISME ART DIVISION. ALL RIGHTS RESERVED.</p>
+                <div class="flex space-x-8">
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function openModal(img, title, price, desc) {
+            document.getElementById('modalImg').src = img;
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('productModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('productModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        window.onclick = function(e) {
+            if (e.target == document.getElementById('productModal')) closeModal();
+        }
+    </script>
+</body>
+</html>

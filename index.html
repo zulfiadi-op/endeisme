@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENDEISME | Revolutionizing Streetwear</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@300;400;700&display=swap');
+        
+        :root { 
+            --neon: #bef264; 
+        }
+
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            scroll-behavior: smooth; 
+            background-color: #0f0f0f;
+        }
+
+        .heading-font { font-family: 'Archivo Black', sans-serif; }
+
+        .glass { 
+            background: rgba(26, 26, 26, 0.8); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+
+        .marquee { 
+            white-space: nowrap; 
+            overflow: hidden; 
+            background: var(--neon); 
+            color: black; 
+            padding: 10px 0; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+        }
+
+        .marquee-content { 
+            display: inline-block; 
+            animation: marquee 20s linear infinite; 
+        }
+
+        @keyframes marquee { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(-50%); } 
+        }
+
+        /* Penanganan Background Image Lokal */
+        .hero-bg {
+            background-image: url('img/bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="text-white overflow-x-hidden">
+
+    <div class="marquee">
+        <div class="marquee-content">
+            FREE SHIPPING WORLDWIDE FOR BUNDLE PACK • NEW DROP: EGO DEATH SERIES • GET 15% OFF FOR FIRST BUY • ENDEISME ART DIVISION • FREE STICKERS EVERY PURCHASE • 
+            FREE SHIPPING WORLDWIDE FOR BUNDLE PACK • NEW DROP: EGO DEATH SERIES • GET 15% OFF FOR FIRST BUY • ENDEISME ART DIVISION • FREE STICKERS EVERY PURCHASE • 
+        </div>
+    </div>
+
+    <nav class="sticky top-0 z-50 glass">
+        <div class="max-w-7xl mx-auto flex justify-between items-center p-5">
+            <h1 class="text-3xl heading-font tracking-tighter text-white">ENDE<span class="text-lime-400">ISME</span></h1>
+            <div class="hidden md:flex space-x-10 uppercase text-xs tracking-widest font-bold">
+                <a href="baju.html" class="hover:text-lime-400 transition">Catalog</a>
+                <a href="stiker.html" class="hover:text-lime-400 transition">Stickers</a>
+                <a href="about.html" class="hover:text-lime-400 transition">The Movement</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="hero-bg w-full h-full opacity-50 scale-110 animate-[pulse_8s_infinite]"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-[#0f0f0f]/50"></div>
+        </div>
+        
+        <div class="z-10 text-center px-4">
+            <span class="inline-block border border-lime-400 text-lime-400 px-4 py-1 rounded-full text-xs font-bold mb-6 animate__animated animate__fadeInDown">NEW COLLECTION 2026</span>
+            <h2 class="text-6xl md:text-9xl heading-font mb-6 leading-none animate__animated animate__fadeInUp">
+                WEAR THE <br>
+                <span class="text-transparent" style="-webkit-text-stroke: 1px white;">CULTURE</span>
+            </h2>
+            <p class="max-w-lg mx-auto text-gray-400 text-sm md:text-base mb-10 animate__animated animate__fadeIn animate__delay-1s">
+                "local brand mengajarkanku bagaimana berbusana yang tepat ditanah sendiri". <br class="hidden md:block">Mari dukung brand Lokal.
+            </p>
+            <div class="flex flex-col md:flex-row gap-5 justify-center animate__animated animate__fadeInUp animate__delay-1s">
+                <a href="baju.html" class="bg-white text-black px-10 py-4 font-black uppercase text-sm hover:bg-lime-400 transition-all duration-300">Shop Apparel</a>
+                <a href="stiker.html" class="border border-white px-10 py-4 font-black uppercase text-sm hover:bg-white hover:text-black transition-all duration-300">Grab Sticker Pack</a>
+            </div>
+        </div>
+    </section>
+<footer class="bg-zinc-950 border-t border-zinc-900 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-20">
+                
+                <div class="space-y-6">
+                    <img src="img/logo.png" alt="Logo" class="h-10 w-auto opacity-80">
+                    <h3 class="heading-font text-xl text-lime-400">OUR LEGACY.</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Lahir dari hiruk-pikuk jalanan pada tahun 2024, <span class="text-white font-bold">ENDEISME</span> bukan sekadar label pakaian. Kami adalah manifestasi dari pemberontakan terhadap gaya yang membosankan. 
+                        <br><br>
+                        Tujuan kami jelas: Menyediakan "armor" bagi mereka yang bangga berpijak di tanah sendiri dan berani menunjukkan identitas kulturnya melalui streetwear berkualitas tinggi.
+                    </p>
+                    <div class="flex space-x-5">
+                        <a href="https://www.instagram.com/endeisme/" target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">Instagram</a>
+                        <a href="https://www.tiktok.com/@ryan_tiii" target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">TikTok</a>
+                        <a href="https://wa.me/628133920005930?text=Halo%20Endeisme%2C%20saya%20ingin%20tanya%20seputar%20produk%20terbaru." target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="heading-font text-xl text-white">HEADQUARTER<span class="text-lime-400">.</span></h3>
+                   <div class="w-full h-64 bg-zinc-900 border border-zinc-800 grayscale hover:grayscale-0 transition duration-500">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3536.8689733512574!2d121.64011001586913!3d-8.842059272338833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dad590009b98359%3A0x7d14dd0fc3f0f51e!2sEndeisme%20Kedai!5e1!3m2!1sid!2sid!4v1770260795533!5m2!1sid!2sid" 
+                            class="w-full h-full" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <p class="text-zinc-500 text-xs">Jl. Streetwear No. 101, Distrik Kreatif, Indonesia.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="heading-font text-xl text-white">GET UPDATES<span class="text-lime-400">.</span></h3>
+                    <p class="text-zinc-500 text-sm italic text-balance">Jadilah yang pertama tahu tentang rilisan terbatas dan kolaborasi eksklusif kami.</p>
+                    <div class="flex flex-col space-y-4">
+                        <input type="email" placeholder="YOUR EMAIL ADDRESS" class="bg-transparent border border-zinc-800 px-4 py-3 text-xs focus:border-lime-400 outline-none transition uppercase">
+                        <button class="bg-white text-black py-3 font-black text-xs uppercase hover:bg-lime-400 transition">Join Movement</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-zinc-900 pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold text-zinc-600 tracking-[0.2em] uppercase">
+                <p>&copy; 2026 ENDEISME ART DIVISION. ALL RIGHTS RESERVED.</p>
+                <div class="flex space-x-8">
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
