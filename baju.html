@@ -35,45 +35,16 @@
     <main class="max-w-7xl mx-auto py-16 px-6">
         <div class="mb-16">
             <h1 class="text-6xl heading-font mb-2">APPAREL<span class="text-lime-400">.</span></h1>
-            <p class="text-zinc-500 uppercase tracking-widest text-sm font-bold">Premium Heavyweight Series / 6 Items</p>
+            <p id="product-meta" class="text-zinc-500 uppercase tracking-widest text-sm font-bold">Premium Heavyweight Series / 20 Items</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            <div class="group">
-                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
-                    <img src="img/baju1.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <button onclick="openModal('img/baju1.webp', 'Ego Death Oversized Tee', '189000', 'Edisi ini kolaborasi Garuda dan Tenun Ikat dengan pilihan warna yang lebih kekinian.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
-                    </div>
-                </div>
-                <h3 class="text-lg font-bold uppercase tracking-tight">Ego Death Oversized Tee</h3>
-                <p class="text-zinc-500 text-sm mb-1 italic">Black / 24s Cotton</p>
-                <p class="text-lime-400 font-bold font-mono">IDR 189.000</p>
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
             </div>
 
-            <div class="group">
-                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
-                    <img src="img/baju2.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <button onclick="openModal('img/baju2.webp', 'Manifesto Hoodie', '349000', 'Material Heavyweight Fleece yang nyaman digunakan di berbagai kondisi.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
-                    </div>
-                </div>
-                <h3 class="text-lg font-bold uppercase tracking-tight">Manifesto Hoodie</h3>
-                <p class="text-zinc-500 text-sm mb-1 italic">Charcoal / Heavy Fleece</p>
-                <p class="text-lime-400 font-bold font-mono">IDR 349.000</p>
-            </div>
-
-            <div class="group">
-                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
-                    <img src="img/baju3.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <button onclick="openModal('img/baju3.webp', 'Vandal Signature', '189000', 'Edisi Grafity Part 2, menyesuaikan Genre Musik Hip-Hop.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
-                    </div>
-                </div>
-                <h3 class="text-lg font-bold uppercase tracking-tight">Vandal Signature</h3>
-                <p class="text-zinc-500 text-sm mb-1 italic">White / Screenprinted</p>
-                <p class="text-lime-400 font-bold font-mono">IDR 189.000</p>
-            </div>
+        <div class="mt-20 flex justify-center items-center gap-4">
+            <button id="prevPage" onclick="changePage(-1)" class="px-6 py-2 border border-zinc-800 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-white">Previous</button>
+            <span id="pageInfo" class="text-xs font-mono text-zinc-500">Page 1 of 2</span>
+            <button id="nextPage" onclick="changePage(1)" class="px-6 py-2 border border-zinc-800 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-white">Next</button>
         </div>
     </main>
 
@@ -128,9 +99,76 @@
     </div>
 
 <script>
+        // DATA PRODUK (20 ITEM)
+        const products = [
+            { img: 'img/baju1.webp', title: 'Ego Death Oversized Tee', price: 189000, desc: 'Edisi ini kolaborasi Garuda dan Tenun Ikat dengan pilihan warna yang lebih kekinian.', sub: 'Black / 24s Cotton' },
+            { img: 'img/baju2.webp', title: 'Manifesto Hoodie', price: 349000, desc: 'Material Heavyweight Fleece yang nyaman digunakan di berbagai kondisi.', sub: 'Charcoal / Heavy Fleece' },
+            { img: 'img/baju3.webp', title: 'Vandal Signature', price: 189000, desc: 'Edisi Grafity Part 2, menyesuaikan Genre Musik Hip-Hop.', sub: 'White / Screenprinted' },
+            { img: 'img/baju1.webp', title: 'Cipher Acid Wash', price: 219000, desc: 'Vintage look dengan teknik pencucian khusus.', sub: 'Vintage Grey / 20s Cotton' },
+            { img: 'img/baju2.webp', title: 'Nightmare Crewneck', price: 299000, desc: 'Potongan boxy fit dengan bordir high density.', sub: 'Solid Black / Fleece' },
+            { img: 'img/baju3.webp', title: 'Uprising T-Shirt', price: 179000, desc: 'Grafis revolusioner dengan tinta plastisol.', sub: 'Deep Blue / 24s Cotton' },
+            { img: 'img/baju1.webp', title: 'Nomad Cargo Tee', price: 199000, desc: 'Dilengkapi dengan saku fungsional di dada.', sub: 'Olive / 24s Cotton' },
+            { img: 'img/baju2.webp', title: 'Overdrive Zip Hoodie', price: 389000, desc: 'Zip hoodie premium dengan YKK zipper.', sub: 'Black / Heavy Fleece' },
+            { img: 'img/baju3.webp', title: 'Signal Longsleeve', price: 229000, desc: 'Lengan panjang dengan rib premium.', sub: 'White / 20s Cotton' },
+            { img: 'img/baju1.webp', title: 'Rebel Youth Tee', price: 189000, desc: 'Streetwear klasik untuk aktivitas harian.', sub: 'Maroon / 24s Cotton' },
+            { img: 'img/baju2.webp', title: 'Ghost Mode Hoodie', price: 349000, desc: 'Reflective print yang menyala saat terkena cahaya.', sub: 'Grey / Fleece' },
+            { img: 'img/baju3.webp', title: 'Venom Graphics', price: 189000, desc: 'Ilustrasi eksklusif dari seniman lokal.', sub: 'Black / 24s Cotton' },
+            { img: 'img/baju1.webp', title: 'Arcade Retro Tee', price: 179000, desc: 'Nuansa 80-an dengan warna vibrant.', sub: 'Purple / 24s Cotton' },
+            { img: 'img/baju2.webp', title: 'Structure Pullover', price: 329000, desc: 'Desain minimalis untuk tampilan clean.', sub: 'Beige / Fleece' },
+            { img: 'img/baju3.webp', title: 'District Vandal', price: 189000, desc: 'Typografi unik bertema urban.', sub: 'Black / 24s Cotton' },
+            { img: 'img/baju1.webp', title: 'Future Past Tee', price: 199000, desc: 'Teknologi sablon discharge menyatu dengan kain.', sub: 'Acid Black / 20s Cotton' },
+            { img: 'img/baju2.webp', title: 'Core Base Hoodie', price: 299000, desc: 'Koleksi dasar wajib punya untuk layering.', sub: 'Navy / Fleece' },
+            { img: 'img/baju3.webp', title: 'Trial & Error', price: 189000, desc: 'Konsep dekonstruksi yang artistik.', sub: 'White / 24s Cotton' },
+            { img: 'img/baju1.webp', title: 'Shadow Oversized', price: 209000, desc: 'Siluet ekstra longgar untuk kenyamanan maksimal.', sub: 'Black / 20s Cotton' },
+            { img: 'img/baju2.webp', title: 'Endeisme Origin', price: 399000, desc: 'Jaket edisi terbatas ulang tahun ke-1.', sub: 'Black / Premium Heavyweight' }
+        ];
+
+        let currentPage = 1;
+        const itemsPerPage = 10;
         let cart = JSON.parse(localStorage.getItem('endeisme_cart')) || [];
         let selectedSize = '';
         let currentProduct = null;
+
+        // FUNGSI RENDER PRODUK DENGAN PAGINATION
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const paginatedItems = products.slice(start, end);
+
+            paginatedItems.forEach(product => {
+                grid.innerHTML += `
+                    <div class="group">
+                        <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
+                            <img src="${product.img}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <button onclick="openModal('${product.img}', '${product.title}', '${product.price}', '${product.desc}')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold uppercase tracking-tight">${product.title}</h3>
+                        <p class="text-zinc-500 text-sm mb-1 italic">${product.sub}</p>
+                        <p class="text-lime-400 font-bold font-mono">IDR ${product.price.toLocaleString('id-ID')}</p>
+                    </div>
+                `;
+            });
+
+            updatePaginationUI();
+        }
+
+        function updatePaginationUI() {
+            const totalPages = Math.ceil(products.length / itemsPerPage);
+            document.getElementById('pageInfo').innerText = `Page ${currentPage} of ${totalPages}`;
+            document.getElementById('prevPage').disabled = currentPage === 1;
+            document.getElementById('nextPage').disabled = currentPage === totalPages;
+            window.scrollTo(0, 0);
+        }
+
+        function changePage(delta) {
+            currentPage += delta;
+            renderProducts();
+        }
 
         // Fungsi Modal
         function openModal(img, title, price, desc) {
@@ -140,10 +178,8 @@
             document.getElementById('modalDisplayPrice').innerText = 'IDR ' + currentProduct.price.toLocaleString('id-ID');
             document.getElementById('modalDesc').innerText = desc;
             
-            // Reset selection
             selectedSize = '';
             document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('bg-white', 'text-black', 'border-white'));
-            
             document.getElementById('productModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
 
@@ -173,7 +209,7 @@
             btn.classList.add('bg-white', 'text-black', 'border-white');
         }
 
-        // Fungsi Keranjang dengan SweetAlert Toast
+        // Fungsi Keranjang
         function addToCart(title, price, img, size) {
             const existing = cart.find(item => item.title === title && item.size === size);
             if (existing) {
@@ -184,7 +220,6 @@
             saveAndUpdate();
             closeModal();
 
-            // Notifikasi Toast yang elegan
             Swal.fire({
                 title: 'ADDED TO CART',
                 text: `${title} (${size}) berhasil ditambahkan.`,
@@ -205,7 +240,6 @@
         function changeQty(index, delta) {
             cart[index].qty += delta;
             if (cart[index].qty < 1) {
-                // Jika quantity 0, panggil fungsi hapus dengan konfirmasi
                 return removeFromCart(index);
             }
             saveAndUpdate();
@@ -229,13 +263,12 @@
                 total += item.price * item.qty;
                 count += item.qty;
                 container.innerHTML += `
-                    <div class="flex gap-4 items-start animate__animated animate__fadeInUp border-b border-zinc-900 pb-4">
+                    <div class="flex gap-4 items-start border-b border-zinc-900 pb-4">
                         <img src="${item.img}" class="w-16 h-20 object-cover border border-zinc-800">
                         <div class="flex-grow">
                             <h4 class="text-xs font-bold uppercase">${item.title}</h4>
                             <p class="text-[10px] text-zinc-500 uppercase tracking-tighter">Size: ${item.size}</p>
                             <p class="text-lime-400 text-xs font-bold mt-1">IDR ${(item.price * item.qty).toLocaleString('id-ID')}</p>
-                            
                             <button onclick="removeFromCart(${index})" class="mt-2 text-[9px] text-red-500 hover:text-red-400 uppercase font-bold tracking-widest transition">
                                 Remove Item [x]
                             </button>
@@ -250,18 +283,13 @@
             });
 
             if(cart.length === 0) {
-                container.innerHTML = `
-                    <div class="flex flex-col items-center justify-center py-20 opacity-20">
-                        <span class="text-4xl mb-4">∅</span>
-                        <p class="italic text-sm uppercase tracking-widest">Cart is empty</p>
-                    </div>`;
+                container.innerHTML = `<div class="flex flex-col items-center justify-center py-20 opacity-20"><span class="text-4xl mb-4">∅</span><p class="italic text-sm uppercase tracking-widest">Cart is empty</p></div>`;
             }
 
             countEl.innerText = count;
             totalEl.innerText = 'IDR ' + total.toLocaleString('id-ID');
         }
 
-        // Fungsi Hapus dengan Konfirmasi SweetAlert
         function removeFromCart(index) {
             Swal.fire({
                 title: 'HAPUS ITEM?',
@@ -278,8 +306,7 @@
                 if (result.isConfirmed) {
                     cart.splice(index, 1);
                     saveAndUpdate();
-                } else if (cart[index].qty < 1) {
-                    // Jika batal saat quantity 0, kembalikan ke 1
+                } else if (cart[index] && cart[index].qty < 1) {
                     cart[index].qty = 1;
                     saveAndUpdate();
                 }
@@ -292,17 +319,9 @@
             else sidebar.classList.toggle('open');
         }
 
-        // Fitur Pesan WhatsApp dengan Input SweetAlert
         async function checkoutWA() {
             if (cart.length === 0) {
-                return Swal.fire({
-                    title: 'KERANJANG KOSONG',
-                    text: 'Silakan pilih produk terlebih dahulu.',
-                    icon: 'info',
-                    background: '#18181b',
-                    color: '#fff',
-                    confirmButtonColor: '#bef264'
-                });
+                return Swal.fire({ title: 'KERANJANG KOSONG', text: 'Silakan pilih produk terlebih dahulu.', icon: 'info', background: '#18181b', color: '#fff', confirmButtonColor: '#bef264' });
             }
             
             const { value: name } = await Swal.fire({
@@ -314,36 +333,25 @@
                 color: '#fff',
                 confirmButtonColor: '#bef264',
                 confirmButtonText: 'PROSES KE WA',
-                inputValidator: (value) => {
-                    if (!value) return 'Nama tidak boleh kosong!';
-                }
+                inputValidator: (value) => { if (!value) return 'Nama tidak boleh kosong!'; }
             });
 
             if (name) {
                 const phone = "6285161182132"; 
-                let message = `*PESANAN BARU - ENDEISME*\n`;
-                message += `------------------------------\n`;
-                message += `*Nama:* ${name}\n\n`;
-                
+                let message = `*PESANAN BARU - ENDEISME*\n------------------------------\n*Nama:* ${name}\n\n`;
                 let totalAll = 0;
                 cart.forEach((item, i) => {
                     const subtotal = item.price * item.qty;
                     totalAll += subtotal;
-                    message += `${i+1}. *${item.title}*\n`;
-                    message += `   Size: ${item.size} | Jml: ${item.qty}\n`;
-                    message += `   Sub: IDR ${subtotal.toLocaleString('id-ID')}\n\n`;
+                    message += `${i+1}. *${item.title}*\n   Size: ${item.size} | Jml: ${item.qty}\n   Sub: IDR ${subtotal.toLocaleString('id-ID')}\n\n`;
                 });
-
-                message += `------------------------------\n`;
-                message += `*TOTAL ESTIMASI: Rp ${totalAll.toLocaleString('id-ID')}*\n\n`;
-                message += `Mohon info ketersediaan stok & ongkirnya ya.`;
-
-                const encoded = encodeURIComponent(message);
-                window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
+                message += `------------------------------\n*TOTAL ESTIMASI: Rp ${totalAll.toLocaleString('id-ID')}*\n\nMohon info ketersediaan stok & ongkirnya ya.`;
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
             }
         }
 
         // Inisialisasi awal
+        renderProducts();
         renderCart();
     </script>
 </body>
