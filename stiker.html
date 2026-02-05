@@ -10,10 +10,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@300;400;700&display=swap');
         body { font-family: 'Outfit', sans-serif; background-color: #bef264; color: black; overflow-x: hidden; }
         .heading-font { font-family: 'Archivo Black', sans-serif; }
-        .sticker-card { background: white; border: 4px solid black; box-shadow: 10px 10px 0px black; transition: 0.2s; }
-        .sticker-card:hover { transform: translate(-5px, -5px); box-shadow: 15px 15px 0px black; }
+        .sticker-card { background: white; border: 4px solid black; box-shadow: 8px 8px 0px black; transition: 0.2s; }
+        .sticker-card:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0px black; }
         
-        /* Sidebar Keranjang Brutalist */
         .cart-sidebar { 
             transform: translateX(100%); 
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
@@ -22,125 +21,165 @@
         }
         .cart-sidebar.open { transform: translateX(0); }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #bef264; }
-        ::-webkit-scrollbar-thumb { background: black; border: 2px solid #bef264; }
+        .pagination-btn { border: 2px solid black; padding: 8px 16px; font-weight: 900; transition: 0.2s; background: white; }
+        .pagination-btn.active { background: black; color: white; }
+        .pagination-btn:hover:not(.active) { transform: translateY(-2px); background: #f0f0f0; }
+
+        /* Mencegah konten tertutup navbar yang fixed/sticky */
+        .content-wrapper { padding-top: 120px; }
     </style>
 </head>
-<body class="p-6">
-
-    <nav class="max-w-6xl mx-auto flex justify-between items-center mb-20">
-        <a href="index.html" class="heading-font text-3xl tracking-tighter uppercase italic underline decoration-4 underline-offset-4">Endeisme</a>
-        <div class="flex items-center gap-4">
-            <button onclick="toggleCart()" class="bg-black text-white px-6 py-2 font-black uppercase text-xs hover:bg-white hover:text-black border-2 border-black transition">
-                Cart (<span id="cart-count">0</span>)
-            </button>
-            <a href="index.html" class="bg-white text-black border-2 border-black px-6 py-2 font-black uppercase text-xs hover:bg-black hover:text-white transition">Home</a>
+<body class="p-0 m-0"> <nav class="sticky top-0 z-[100] bg-[#bef264] border-b-4 border-black px-6 py-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="heading-font text-3xl tracking-tighter uppercase italic underline decoration-4 underline-offset-4">Endeisme</a>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCart()" class="bg-black text-white px-6 py-2 font-black uppercase text-xs hover:bg-white hover:text-black border-2 border-black transition relative">
+                    Cart (<span id="cart-count">0</span>)
+                </button>
+                <a href="index.html" class="bg-white text-black border-2 border-black px-6 py-2 font-black uppercase text-xs hover:bg-black hover:text-white transition">Home</a>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto">
-        <div class="mb-12">
+    <main class="max-w-6xl mx-auto p-6">
+        <div class="mb-12 mt-10">
             <h1 class="text-7xl md:text-9xl heading-font uppercase leading-[0.8]">STICKER<br>PACKS<span class="text-white">.</span></h1>
-            <p class="mt-8 font-black uppercase tracking-widest bg-black text-white inline-block px-4 py-1">Limited Vinyl Material</p>
+            <p class="mt-8 font-black uppercase tracking-widest bg-black text-white inline-block px-4 py-1">20 Limited Vinyl Designs</p>
         </div>
 
-        <div id="sticker-grid" class="grid grid-cols-1 md:grid-cols-2 gap-12 py-10">
-            <div class="sticker-card p-6 flex flex-col md:flex-row gap-6">
-                <div class="w-full md:w-1/2 aspect-square bg-zinc-200 border-2 border-black overflow-hidden">
-                    <img src="img/stiker1.webp" class="w-full h-full object-cover">
-                </div>
-                <div class="w-full md:w-1/2 flex flex-col justify-between">
-                    <div>
-                        <h2 class="text-3xl heading-font uppercase leading-none mb-2 italic">Vandal Art Vol. 1</h2>
-                        <p class="font-bold text-zinc-600 text-sm italic">Isi 15 pcs stiker vinyl laminasi matte. Anti air & anti badai.</p>
-                    </div>
-                    <div class="mt-6">
-                        <p class="text-3xl font-black mb-4 font-mono underline underline-offset-4">IDR 45.000</p>
-                        <button onclick="addToCart('Vandal Art Vol. 1', 45000, 'img/stiker1.webp')" class="w-full bg-black text-white py-3 font-black uppercase text-xs border-2 border-black hover:bg-[#bef264] hover:text-black transition">
-                            Add To Cart +
-                        </button>
-                    </div>
-                </div>
+        <div id="sticker-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
             </div>
 
-            <div class="sticker-card p-6 flex flex-col md:flex-row gap-6">
-                <div class="w-full md:w-1/2 aspect-square bg-zinc-200 border-2 border-black overflow-hidden">
-                    <img src="img/stiker2.webp" class="w-full h-full object-cover">
-                </div>
-                <div class="w-full md:w-1/2 flex flex-col justify-between">
-                    <div>
-                        <h2 class="text-3xl heading-font uppercase leading-none mb-2 italic">Logo Evolution</h2>
-                        <p class="font-bold text-zinc-600 text-sm italic">Isi 10 pcs stiker eksklusif logo Endeisme dari masa ke masa.</p>
-                    </div>
-                    <div class="mt-6">
-                        <p class="text-3xl font-black mb-4 font-mono underline underline-offset-4">IDR 35.000</p>
-                        <button onclick="addToCart('Logo Evolution', 35000, 'img/stiker2.webp')" class="w-full bg-black text-white py-3 font-black uppercase text-xs border-2 border-black hover:bg-[#bef264] hover:text-black transition">
-                            Add To Cart +
-                        </button>
-                    </div>
-                </div>
+        <div class="flex justify-center items-center gap-4 mt-12 mb-24" id="pagination">
             </div>
-        </div>
     </main>
 
     <div id="cartSidebar" class="fixed top-0 right-0 h-full w-full md:w-96 z-[110] cart-sidebar shadow-2xl flex flex-col">
         <div class="p-6 border-b-4 border-black flex justify-between items-center bg-black text-white">
-            <h2 class="heading-font text-xl uppercase">Your Stash.</h2>
-            <button onclick="toggleCart()" class="font-black uppercase text-xs">Close ✕</button>
+            <h2 class="heading-font text-xl uppercase italic">Your Stash.</h2>
+            <button onclick="toggleCart()" class="font-black uppercase text-xs border border-white px-2 py-1 hover:bg-white hover:text-black transition">Close ✕</button>
         </div>
         
-        <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-6 bg-white">
-            </div>
+        <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-4 bg-white"></div>
 
         <div class="p-6 border-t-4 border-black bg-white">
             <div class="flex justify-between mb-6">
-                <span class="font-black uppercase text-xs">Total</span>
+                <span class="font-black uppercase text-xs">Total Est.</span>
                 <span id="cart-total" class="heading-font text-2xl underline decoration-2">IDR 0</span>
             </div>
             <button onclick="checkoutWA()" class="w-full bg-[#bef264] text-black border-4 border-black py-4 font-black uppercase text-xs tracking-widest hover:bg-black hover:text-white transition duration-300 shadow-[5px_5px_0px_black]">
-                Pesan via WhatsApp
+                CHECKOUT VIA WHATSAPP
             </button>
         </div>
     </div>
 
     <script>
-        let cart = JSON.parse(localStorage.getItem('endeisme_stickers')) || [];
+        const products = Array.from({ length: 20 }, (_, i) => ({
+            id: i + 1,
+            title: `Endeisme Pack Vol. ${i + 1}`,
+            price: i < 10 ? 35000 : 45000,
+            desc: "Vinyl material, laminasi matte, anti gores & tahan air.",
+            img: `img/stiker${(i % 2) + 1}.webp` 
+        }));
 
-        // 1. Fungsi Tambah ke Keranjang
+        let cart = JSON.parse(localStorage.getItem('endeisme_stickers')) || [];
+        let currentPage = 1;
+        const itemsPerPage = 6;
+
+        function renderProducts(page) {
+            const grid = document.getElementById('sticker-grid');
+            const paginContainer = document.getElementById('pagination');
+            grid.innerHTML = '';
+            
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const paginatedItems = products.slice(start, end);
+
+            paginatedItems.forEach(p => {
+                grid.innerHTML += `
+                    <div class="sticker-card p-5 flex flex-col">
+                        <div class="aspect-square bg-zinc-100 border-2 border-black overflow-hidden mb-4">
+                            <img src="${p.img}" class="w-full h-full object-cover">
+                        </div>
+                        <h2 class="text-xl heading-font uppercase italic leading-tight">${p.title}</h2>
+                        <p class="text-[10px] font-bold text-zinc-500 mt-2 mb-4">${p.desc}</p>
+                        <div class="mt-auto">
+                            <p class="text-2xl font-black mb-3 font-mono">IDR ${p.price.toLocaleString('id-ID')}</p>
+                            <button onclick="addToCart('${p.title}', ${p.price}, '${p.img}')" class="w-full bg-black text-white py-3 font-black uppercase text-[10px] border-2 border-black hover:bg-[#bef264] hover:text-black transition">
+                                Add To Cart +
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            paginContainer.innerHTML = '';
+            const totalPages = Math.ceil(products.length / itemsPerPage);
+            for(let i=1; i<=totalPages; i++) {
+                paginContainer.innerHTML += `
+                    <button onclick="goToPage(${i})" class="pagination-btn ${i === page ? 'active' : ''}">${i}</button>
+                `;
+            }
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            renderProducts(page);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function addToCart(title, price, img) {
             const existing = cart.find(item => item.title === title);
-            if (existing) {
-                existing.qty++;
-            } else {
-                cart.push({ title, price, img, qty: 1 });
-            }
-            saveAndUpdate();
+            if (existing) existing.qty++;
+            else cart.push({ title, price, img, qty: 1 });
             
+            saveAndUpdate();
             Swal.fire({
                 title: 'STUCK!',
-                text: `${title} masuk keranjang.`,
+                text: 'Item berhasil ditambahkan',
                 icon: 'success',
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 2000,
-                background: '#000',
-                color: '#fff',
-                iconColor: '#bef264'
+                timer: 1500,
+                background: '#000', color: '#fff'
             });
-            
-            toggleCart(true);
         }
 
-        // 2. Simpan Data
+        async function removeFromCart(index) {
+            const result = await Swal.fire({
+                title: 'HAPUS BARANG?',
+                text: "Barang ini akan hilang dari stash kamu.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#000',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'YA, HAPUS!',
+                cancelButtonText: 'BATAL',
+                background: '#fff',
+                color: '#000'
+            });
+
+            if (result.isConfirmed) {
+                cart.splice(index, 1);
+                saveAndUpdate();
+                Swal.fire({
+                    title: 'DIPERBARUI',
+                    text: 'Barang telah dihapus.',
+                    icon: 'success',
+                    timer: 1000,
+                    showConfirmButton: false,
+                    background: '#000',
+                    color: '#fff'
+                });
+            }
+        }
+
         function saveAndUpdate() {
             localStorage.setItem('endeisme_stickers', JSON.stringify(cart));
             renderCart();
         }
 
-        // 3. Tampilkan Keranjang
         function renderCart() {
             const container = document.getElementById('cart-items');
             const countEl = document.getElementById('cart-count');
@@ -154,26 +193,23 @@
                 total += item.price * item.qty;
                 count += item.qty;
                 container.innerHTML += `
-                    <div class="flex gap-4 items-center border-2 border-black p-3 bg-zinc-50 shadow-[4px_4px_0px_black]">
-                        <img src="${item.img}" class="w-16 h-16 object-cover border-2 border-black">
+                    <div class="flex gap-4 items-center border-2 border-black p-3 bg-zinc-50">
+                        <img src="${item.img}" class="w-12 h-12 object-cover border border-black">
                         <div class="flex-grow">
-                            <h4 class="text-xs font-black uppercase leading-tight">${item.title}</h4>
-                            <p class="text-xs font-bold mt-1 italic">IDR ${item.price.toLocaleString('id-ID')}</p>
-                            <button onclick="removeFromCart(${index})" class="text-[9px] font-black uppercase text-red-600 underline mt-1">Remove</button>
+                            <h4 class="text-[10px] font-black uppercase leading-tight">${item.title}</h4>
+                            <p class="text-[10px] font-bold italic">IDR ${item.price.toLocaleString('id-ID')}</p>
+                            <button onclick="removeFromCart(${index})" class="text-[8px] font-black uppercase text-red-600 underline">Remove</button>
                         </div>
-                        <div class="flex flex-col items-center border-l-2 border-black pl-3">
-                            <button onclick="changeQty(${index}, 1)" class="font-bold text-lg">+</button>
-                            <span class="font-mono text-sm">${item.qty}</span>
-                            <button onclick="changeQty(${index}, -1)" class="font-bold text-lg">-</button>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty(${index}, -1)" class="w-5 h-5 border border-black flex items-center justify-center font-bold">-</button>
+                            <span class="font-mono text-xs">${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)" class="w-5 h-5 border border-black flex items-center justify-center font-bold">+</button>
                         </div>
                     </div>
                 `;
             });
 
-            if(cart.length === 0) {
-                container.innerHTML = `<div class="text-center py-10 opacity-30 font-black uppercase italic">Empty Stash</div>`;
-            }
-
+            if(cart.length === 0) container.innerHTML = `<div class="text-center py-20 opacity-20 font-black italic uppercase">Empty Stash</div>`;
             countEl.innerText = count;
             totalEl.innerText = 'IDR ' + total.toLocaleString('id-ID');
         }
@@ -184,57 +220,27 @@
             saveAndUpdate();
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            saveAndUpdate();
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
         }
 
-        function toggleCart(open = null) {
-            const sidebar = document.getElementById('cartSidebar');
-            if (open === true) sidebar.classList.add('open');
-            else if (open === false) sidebar.classList.remove('open');
-            else sidebar.classList.toggle('open');
+        function checkoutWA() {
+            if (cart.length === 0) return Swal.fire('KOSONG!', 'Isi dulu keranjangmu bos.', 'error');
+            const phone = "6285161182132";
+            let msg = `*ORDER STICKER - ENDEISME*\n---\n`;
+            cart.forEach((it, i) => msg += `${i+1}. ${it.title} (${it.qty}x)\n`);
+            let total = cart.reduce((a, b) => a + (b.price * b.qty), 0);
+            msg += `---\n*TOTAL: IDR ${total.toLocaleString('id-ID')}*`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        // 4. Checkout WhatsApp (Otomatis Preview Gambar via Vercel)
-        async function checkoutWA() {
-            if (cart.length === 0) return;
-
-            const { value: name } = await Swal.fire({
-                title: 'SIAPA NAMAMU?',
-                input: 'text',
-                background: '#fff',
-                color: '#000',
-                confirmButtonColor: '#000',
-                confirmButtonText: 'KIRIM KE WA',
-                inputValidator: (v) => !v && 'Isi dulu bos!'
-            });
-
-            if (name) {
-                const phone = "6285161182132";
-                let message = `*STICKER ORDER - ENDEISME*\n--------------------------\n*Nama:* ${name}\n\n`;
-                
-                cart.forEach((item, i) => {
-                    // Logic URL Vercel untuk preview gambar
-                    const imgFullUrl = `${window.location.origin}/${item.img}`;
-                    message += `${i+1}. *${item.title}* (${item.qty}x)\n`;
-                    message += `   Link: ${imgFullUrl}\n\n`;
-                });
-
-                let total = cart.reduce((a, b) => a + (b.price * b.qty), 0);
-                message += `--------------------------\n*TOTAL: IDR ${total.toLocaleString('id-ID')}*`;
-
-                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
-            }
-        }
-
-        // Start
+        renderProducts(currentPage);
         renderCart();
     </script>
-    <footer class="bg-zinc-950 border-t border-zinc-900 pt-20 pb-10">
+
+    <footer class="bg-zinc-950 border-t border-zinc-900 pt-20 pb-10 mt-20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-20">
-                
                 <div class="space-y-6">
                     <img src="img/logo.png" alt="Logo" class="h-10 w-auto opacity-80">
                     <h3 class="heading-font text-xl text-lime-400">OUR LEGACY.</h3>
@@ -246,15 +252,15 @@
                     <div class="flex space-x-5">
                         <a href="https://www.instagram.com/endeisme/" target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">Instagram</a>
                         <a href="https://www.tiktok.com/@ryan_tiii" target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">TikTok</a>
-                        <a href="https://wa.me/628133920005930?text=Halo%20Endeisme%2C%20saya%20ingin%20tanya%20seputar%20produk%20terbaru." target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">WhatsApp</a>
+                        <a href="https://wa.me/628133920005930" target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">WhatsApp</a>
                     </div>
                 </div>
 
                 <div class="space-y-6">
                     <h3 class="heading-font text-xl text-white">HEADQUARTER<span class="text-lime-400">.</span></h3>
-                   <div class="w-full h-64 bg-zinc-900 border border-zinc-800 grayscale hover:grayscale-0 transition duration-500">
+                    <div class="w-full h-64 bg-zinc-900 border border-zinc-800 grayscale hover:grayscale-0 transition duration-500">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3536.8689733512574!2d121.64011001586913!3d-8.842059272338833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dad590009b98359%3A0x7d14dd0fc3f0f51e!2sEndeisme%20Kedai!5e1!3m2!1sid!2sid!4v1770260795533!5m2!1sid!2sid" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d107.5731164!3d-6.9034443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x3e08f58603611850!2sBandung%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1700000000000" 
                             class="w-full h-full" 
                             style="border:0;" 
                             allowfullscreen="" 
@@ -268,14 +274,14 @@
                     <h3 class="heading-font text-xl text-white">GET UPDATES<span class="text-lime-400">.</span></h3>
                     <p class="text-zinc-500 text-sm italic text-balance">Jadilah yang pertama tahu tentang rilisan terbatas dan kolaborasi eksklusif kami.</p>
                     <div class="flex flex-col space-y-4">
-                        <input type="email" placeholder="YOUR EMAIL ADDRESS" class="bg-transparent border border-zinc-800 px-4 py-3 text-xs focus:border-lime-400 outline-none transition uppercase">
+                        <input type="email" placeholder="YOUR EMAIL ADDRESS" class="bg-transparent border border-zinc-800 px-4 py-3 text-xs focus:border-lime-400 outline-none transition uppercase text-white">
                         <button class="bg-white text-black py-3 font-black text-xs uppercase hover:bg-lime-400 transition">Join Movement</button>
                     </div>
                 </div>
             </div>
 
             <div class="border-t border-zinc-900 pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold text-zinc-600 tracking-[0.2em] uppercase">
-                <p>&copy; 2026 ENDEISME ART DIVISION. ALL RIGHTS RESERVED.</p>
+                <p>© 2026 ENDEISME ART DIVISION. ALL RIGHTS RESERVED.</p>
                 <div class="flex space-x-8">
                     <a href="#" class="hover:text-white transition">Terms of Service</a>
                     <a href="#" class="hover:text-white transition">Privacy Policy</a>
