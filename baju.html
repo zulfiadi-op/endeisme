@@ -7,18 +7,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@300;400;700&display=swap');
-        body { font-family: 'Outfit', sans-serif; background-color: #0a0a0a; color: white; }
+        body { font-family: 'Outfit', sans-serif; background-color: #0a0a0a; color: white; scroll-behavior: smooth; }
         .heading-font { font-family: 'Archivo Black', sans-serif; }
         
-        .modal-content::-webkit-scrollbar { width: 4px; }
-        .modal-content::-webkit-scrollbar-thumb { background: #bef264; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #bef264; }
+
+        .cart-sidebar { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .cart-sidebar.open { transform: translateX(0); }
     </style>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <body class="overflow-x-hidden">
 
     <nav class="p-6 flex justify-between items-center border-b border-zinc-900 sticky top-0 bg-[#0a0a0a]/90 backdrop-blur-md z-50">
         <a href="index.html" class="heading-font text-xl italic tracking-tighter text-white">ENDE<span class="text-lime-400">ISME.</span></a>
-        <a href="index.html" class="text-xs font-bold uppercase border border-zinc-700 px-4 py-2 hover:bg-white hover:text-black transition">← Kembali</a>
+        <div class="flex items-center gap-6">
+            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-lime-400 transition">Home</a>
+            <button onclick="toggleCart()" class="relative bg-white text-black px-5 py-2 rounded-full font-bold text-xs uppercase tracking-tighter hover:bg-lime-400 transition">
+                Cart (<span id="cart-count">0</span>)
+            </button>
+        </div>
     </nav>
 
     <main class="max-w-7xl mx-auto py-16 px-6">
@@ -28,12 +39,11 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-            
             <div class="group">
                 <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
                     <img src="img/baju1.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <button onclick="openModal('img/baju1.webp', 'Ego Death Oversized Tee', 'IDR 189.000', 'Edisi ini kolaborasi Garuda dan Tenun Ikat dengan pilihan warna yang lebih kekinian sebagai wujud dari Tagline Timur Pantang Mundur untuk bersaing di Industri Kreatif.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
+                        <button onclick="openModal('img/baju1.webp', 'Ego Death Oversized Tee', '189000', 'Edisi ini kolaborasi Garuda dan Tenun Ikat dengan pilihan warna yang lebih kekinian.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
                     </div>
                 </div>
                 <h3 class="text-lg font-bold uppercase tracking-tight">Ego Death Oversized Tee</h3>
@@ -45,7 +55,7 @@
                 <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
                     <img src="img/baju2.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <button onclick="openModal('img/baju2.webp', 'Manifesto Hoodie', 'IDR 349.000', 'Flores, dari bahasa Portugis yang berarti bunga adalah sebuah pulau yang berada di wilayah administrasi Provinsi Nusa Tenggara Timur, Indonesia. Kata Flores berasal dari bahasa Portugis yaitu cabo de flores  yang berarti Tanjung bunga. Nama tersebut semula di berikan oleh S.M. Cabot untuk menyebut wilayah timur dari pulau Flores. Akhirnya di pakai secara resmi sejak tahun 1636 oleh gubernur jenderal hindia belanda Hendrik Brouwe')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
+                        <button onclick="openModal('img/baju2.webp', 'Manifesto Hoodie', '349000', 'Material Heavyweight Fleece yang nyaman digunakan di berbagai kondisi.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
                     </div>
                 </div>
                 <h3 class="text-lg font-bold uppercase tracking-tight">Manifesto Hoodie</h3>
@@ -57,146 +67,284 @@
                 <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
                     <img src="img/baju3.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <button onclick="openModal('img/baju3.webp', 'Vandal Signature', 'IDR 189.000', 'Edisi Grafity Part 2, menyesuaikan Genre Musik Hip-Hop terkhususnya musik Hip-Hop Indonesia Timur yang lagi exis dan mempengaruhi life style.Tagline  Timur Pantang Munduruntuk bersaing di Industri Kreatif.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
+                        <button onclick="openModal('img/baju3.webp', 'Vandal Signature', '189000', 'Edisi Grafity Part 2, menyesuaikan Genre Musik Hip-Hop.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
                     </div>
                 </div>
                 <h3 class="text-lg font-bold uppercase tracking-tight">Vandal Signature</h3>
                 <p class="text-zinc-500 text-sm mb-1 italic">White / Screenprinted</p>
                 <p class="text-lime-400 font-bold font-mono">IDR 189.000</p>
             </div>
-
-            <div class="group">
-                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
-                    <img src="img/baju4.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <button onclick="openModal('img/baju4.webp', 'Cyber-Street Outer', 'IDR 429.000', 'Edisi TAMENG ENDEISME Edisi ini kita meng kolaborasi kan bentuk Tameng & Motif Tenun Ikat Ende Lio dengan pesan bahwa kita harus berjuang mempertahankan budaya & budaya juga adalah pertahan kita')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
-                    </div>
-                </div>
-                <h3 class="text-lg font-bold uppercase tracking-tight">Cyber-Street Outer</h3>
-                <p class="text-zinc-500 text-sm mb-1 italic">Obsidian / Windbreaker</p>
-                <p class="text-lime-400 font-bold font-mono">IDR 429.000</p>
-            </div>
-
-            <div class="group">
-                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
-                    <img src="img/baju2.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <button onclick="openModal('img/baju2.webp', 'Essential Drop Shoulder', 'IDR 175.000', 'Potongan bahu yang rendah untuk siluet yang lebih santai namun tetap terlihat tegas.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
-                    </div>
-                </div>
-                <h3 class="text-lg font-bold uppercase tracking-tight">Essential Drop Shoulder</h3>
-                <p class="text-zinc-500 text-sm mb-1 italic">Beige / Premium Cotton</p>
-                <p class="text-lime-400 font-bold font-mono">IDR 175.000</p>
-            </div>
-
-            <div class="group">
-                <div class="relative aspect-[3/4] bg-zinc-900 overflow-hidden mb-4 border border-zinc-800">
-                    <img src="img/baju2.webp" class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80 group-hover:opacity-100">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <button onclick="openModal('img/baju2.webp', 'Rebirth Longsleeve', 'IDR 219.000', 'Lengan panjang dengan detail bordir pada pergelangan tangan. Eksklusif dan terbatas.')" class="bg-white text-black px-6 py-2 font-black uppercase text-xs">View Details</button>
-                    </div>
-                </div>
-                <h3 class="text-lg font-bold uppercase tracking-tight">Rebirth Longsleeve</h3>
-                <p class="text-zinc-500 text-sm mb-1 italic">Black / Long Sleeve</p>
-                <p class="text-lime-400 font-bold font-mono">IDR 219.000</p>
-            </div>
-
         </div>
     </main>
 
-    <div id="productModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex items-center justify-center p-4">
-        <div class="bg-zinc-900 max-w-4xl w-full max-h-[90vh] overflow-y-auto modal-content flex flex-col md:flex-row border border-zinc-800">
+    <div id="productModal" class="fixed inset-0 z-[100] hidden bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-zinc-900 max-w-4xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row border border-zinc-800 shadow-2xl">
             <div class="w-full md:w-1/2 bg-black">
                 <img id="modalImg" src="" class="w-full h-full object-cover">
             </div>
             <div class="w-full md:w-1/2 p-10 flex flex-col justify-center">
-                <button onclick="closeModal()" class="self-end text-zinc-500 hover:text-white mb-4 uppercase text-xs font-bold">Close ✕</button>
+                <button onclick="closeModal()" class="self-end text-zinc-500 hover:text-white mb-4 uppercase text-[10px] font-bold tracking-widest">✕ Close</button>
                 <h2 id="modalTitle" class="text-3xl heading-font mb-2 leading-tight uppercase"></h2>
-                <p id="modalPrice" class="text-lime-400 font-mono text-xl mb-6 font-bold"></p>
+                <p id="modalDisplayPrice" class="text-lime-400 font-mono text-xl mb-6 font-bold"></p>
                 <div class="h-px bg-zinc-800 w-full mb-6"></div>
                 <p id="modalDesc" class="text-zinc-400 text-sm leading-relaxed mb-8 italic"></p>
                 
                 <div class="mb-8">
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-3">Pilih Ukuran</p>
-                    <div class="flex gap-2">
-                        <button class="w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:bg-white hover:text-black transition">S</button>
-                        <button class="w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:bg-white hover:text-black transition">M</button>
-                        <button class="w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:bg-white hover:text-black transition">L</button>
-                        <button class="w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:bg-white hover:text-black transition">XL</button>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-3">Size Selection</p>
+                    <div class="flex gap-2" id="size-options">
+                        <button onclick="selectSize(this)" class="size-btn w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:border-lime-400 transition">S</button>
+                        <button onclick="selectSize(this)" class="size-btn w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:border-lime-400 transition">M</button>
+                        <button onclick="selectSize(this)" class="size-btn w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:border-lime-400 transition">L</button>
+                        <button onclick="selectSize(this)" class="size-btn w-10 h-10 border border-zinc-700 flex items-center justify-center text-xs hover:border-lime-400 transition">XL</button>
                     </div>
                 </div>
-                
+
+                <button id="addToCartBtn" class="bg-lime-400 text-black py-4 font-black uppercase text-xs tracking-widest hover:bg-white transition duration-300">
+                    Add To Cart
+                </button>
             </div>
         </div>
     </div>
-<footer class="bg-zinc-950 border-t border-zinc-900 pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-20">
-                
-                <div class="space-y-6">
-                    <img src="img/logo.png" alt="Logo" class="h-10 w-auto opacity-80">
-                    <h3 class="heading-font text-xl text-lime-400">OUR LEGACY.</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed">
-                        Lahir dari hiruk-pikuk jalanan pada tahun 2024, <span class="text-white font-bold">ENDEISME</span> bukan sekadar label pakaian. Kami adalah manifestasi dari pemberontakan terhadap gaya yang membosankan. 
-                        <br><br>
-                        Tujuan kami jelas: Menyediakan "armor" bagi mereka yang bangga berpijak di tanah sendiri dan berani menunjukkan identitas kulturnya melalui streetwear berkualitas tinggi.
-                    </p>
-                    <div class="flex space-x-5">
-                        <a href="https://www.instagram.com/endeisme/" target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">Instagram</a>
-                        <a href="https://www.tiktok.com/@ryan_tiii" target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">TikTok</a>
-                        <a href="https://wa.me/628133920005930?text=Halo%20Endeisme%2C%20saya%20ingin%20tanya%20seputar%20produk%20terbaru." target="_blank" class="text-zinc-500 hover:text-lime-400 transition text-sm font-bold uppercase tracking-widest">WhatsApp</a>
-                    </div>
-                </div>
 
-                <div class="space-y-6">
-                    <h3 class="heading-font text-xl text-white">HEADQUARTER<span class="text-lime-400">.</span></h3>
-                   <div class="w-full h-64 bg-zinc-900 border border-zinc-800 grayscale hover:grayscale-0 transition duration-500">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3536.8689733512574!2d121.64011001586913!3d-8.842059272338833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dad590009b98359%3A0x7d14dd0fc3f0f51e!2sEndeisme%20Kedai!5e1!3m2!1sid!2sid!4v1770260795533!5m2!1sid!2sid" 
-                            class="w-full h-full" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                    <p class="text-zinc-500 text-xs">Jl. Streetwear No. 101, Distrik Kreatif, Indonesia.</p>
-                </div>
-
-                <div class="space-y-6">
-                    <h3 class="heading-font text-xl text-white">GET UPDATES<span class="text-lime-400">.</span></h3>
-                    <p class="text-zinc-500 text-sm italic text-balance">Jadilah yang pertama tahu tentang rilisan terbatas dan kolaborasi eksklusif kami.</p>
-                    <div class="flex flex-col space-y-4">
-                        <input type="email" placeholder="YOUR EMAIL ADDRESS" class="bg-transparent border border-zinc-800 px-4 py-3 text-xs focus:border-lime-400 outline-none transition uppercase">
-                        <button class="bg-white text-black py-3 font-black text-xs uppercase hover:bg-lime-400 transition">Join Movement</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-zinc-900 pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold text-zinc-600 tracking-[0.2em] uppercase">
-                <p>&copy; 2026 ENDEISME ART DIVISION. ALL RIGHTS RESERVED.</p>
-                <div class="flex space-x-8">
-                    <a href="#" class="hover:text-white transition">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                </div>
-            </div>
+    <div id="cartSidebar" class="fixed top-0 right-0 h-full w-full md:w-96 bg-zinc-950 z-[110] cart-sidebar border-l border-zinc-900 shadow-2xl flex flex-col">
+        <div class="p-6 border-b border-zinc-900 flex justify-between items-center">
+            <h2 class="heading-font text-xl">YOUR CART.</h2>
+            <button onclick="toggleCart()" class="text-zinc-500 hover:text-white uppercase text-[10px] font-bold">Close ✕</button>
         </div>
-    </footer>
-    <script>
+        
+        <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-6">
+            <p class="text-zinc-600 italic text-center text-sm py-10">Keranjang masih kosong...</p>
+        </div>
+
+        <div class="p-6 border-t border-zinc-900 bg-zinc-950">
+            <div class="flex justify-between mb-6">
+                <span class="text-zinc-500 uppercase text-xs font-bold">Total Estimasi</span>
+                <span id="cart-total" class="heading-font text-lime-400">IDR 0</span>
+            </div>
+            <button onclick="checkoutWA()" class="w-full bg-white text-black py-4 font-black uppercase text-xs tracking-widest hover:bg-lime-400 transition duration-300">
+                Pesan via WhatsApp
+            </button>
+        </div>
+    </div>
+
+<script>
+        let cart = JSON.parse(localStorage.getItem('endeisme_cart')) || [];
+        let selectedSize = '';
+        let currentProduct = null;
+
+        // Fungsi Modal
         function openModal(img, title, price, desc) {
+            currentProduct = { img, title, price: parseInt(price), desc };
             document.getElementById('modalImg').src = img;
             document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalDisplayPrice').innerText = 'IDR ' + currentProduct.price.toLocaleString('id-ID');
             document.getElementById('modalDesc').innerText = desc;
+            
+            // Reset selection
+            selectedSize = '';
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('bg-white', 'text-black', 'border-white'));
+            
             document.getElementById('productModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+
+            document.getElementById('addToCartBtn').onclick = () => {
+                if(!selectedSize) {
+                    return Swal.fire({
+                        title: 'UKURAN KOSONG',
+                        text: 'Pilih ukuran (S, M, L, XL) terlebih dahulu!',
+                        icon: 'error',
+                        background: '#18181b',
+                        color: '#fff',
+                        confirmButtonColor: '#bef264'
+                    });
+                }
+                addToCart(currentProduct.title, currentProduct.price, currentProduct.img, selectedSize);
+            };
         }
+
         function closeModal() {
             document.getElementById('productModal').classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
-        window.onclick = function(e) {
-            if (e.target == document.getElementById('productModal')) closeModal();
+
+        function selectSize(btn) {
+            selectedSize = btn.innerText;
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('bg-white', 'text-black', 'border-white'));
+            btn.classList.add('bg-white', 'text-black', 'border-white');
         }
+
+        // Fungsi Keranjang dengan SweetAlert Toast
+        function addToCart(title, price, img, size) {
+            const existing = cart.find(item => item.title === title && item.size === size);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ title, price, img, size, qty: 1 });
+            }
+            saveAndUpdate();
+            closeModal();
+
+            // Notifikasi Toast yang elegan
+            Swal.fire({
+                title: 'ADDED TO CART',
+                text: `${title} (${size}) berhasil ditambahkan.`,
+                icon: 'success',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+                background: '#18181b',
+                color: '#fff',
+                iconColor: '#bef264'
+            });
+
+            toggleCart(true); 
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty < 1) {
+                // Jika quantity 0, panggil fungsi hapus dengan konfirmasi
+                return removeFromCart(index);
+            }
+            saveAndUpdate();
+        }
+
+        function saveAndUpdate() {
+            localStorage.setItem('endeisme_cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            const countEl = document.getElementById('cart-count');
+            const totalEl = document.getElementById('cart-total');
+            
+            container.innerHTML = '';
+            let total = 0;
+            let count = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                count += item.qty;
+                container.innerHTML += `
+                    <div class="flex gap-4 items-start animate__animated animate__fadeInUp border-b border-zinc-900 pb-4">
+                        <img src="${item.img}" class="w-16 h-20 object-cover border border-zinc-800">
+                        <div class="flex-grow">
+                            <h4 class="text-xs font-bold uppercase">${item.title}</h4>
+                            <p class="text-[10px] text-zinc-500 uppercase tracking-tighter">Size: ${item.size}</p>
+                            <p class="text-lime-400 text-xs font-bold mt-1">IDR ${(item.price * item.qty).toLocaleString('id-ID')}</p>
+                            
+                            <button onclick="removeFromCart(${index})" class="mt-2 text-[9px] text-red-500 hover:text-red-400 uppercase font-bold tracking-widest transition">
+                                Remove Item [x]
+                            </button>
+                        </div>
+                        <div class="flex items-center border border-zinc-800 bg-black">
+                            <button onclick="changeQty(${index}, -1)" class="px-2 py-1 text-zinc-500 hover:text-white">-</button>
+                            <span class="px-3 text-xs font-mono">${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)" class="px-2 py-1 text-zinc-500 hover:text-white">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-20 opacity-20">
+                        <span class="text-4xl mb-4">∅</span>
+                        <p class="italic text-sm uppercase tracking-widest">Cart is empty</p>
+                    </div>`;
+            }
+
+            countEl.innerText = count;
+            totalEl.innerText = 'IDR ' + total.toLocaleString('id-ID');
+        }
+
+        // Fungsi Hapus dengan Konfirmasi SweetAlert
+        function removeFromCart(index) {
+            Swal.fire({
+                title: 'HAPUS ITEM?',
+                text: "Barang akan dikeluarkan dari keranjang belanja.",
+                icon: 'warning',
+                showCancelButton: true,
+                background: '#18181b',
+                color: '#fff',
+                confirmButtonColor: '#ef4444',
+                cancelButtonColor: '#3f3f46',
+                confirmButtonText: 'YA, HAPUS',
+                cancelButtonText: 'BATAL'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    cart.splice(index, 1);
+                    saveAndUpdate();
+                } else if (cart[index].qty < 1) {
+                    // Jika batal saat quantity 0, kembalikan ke 1
+                    cart[index].qty = 1;
+                    saveAndUpdate();
+                }
+            });
+        }
+
+        function toggleCart(forceOpen = false) {
+            const sidebar = document.getElementById('cartSidebar');
+            if (forceOpen) sidebar.classList.add('open');
+            else sidebar.classList.toggle('open');
+        }
+
+        // Fitur Pesan WhatsApp dengan Input SweetAlert
+        async function checkoutWA() {
+            if (cart.length === 0) {
+                return Swal.fire({
+                    title: 'KERANJANG KOSONG',
+                    text: 'Silakan pilih produk terlebih dahulu.',
+                    icon: 'info',
+                    background: '#18181b',
+                    color: '#fff',
+                    confirmButtonColor: '#bef264'
+                });
+            }
+            
+            const { value: name } = await Swal.fire({
+                title: 'CHECKOUT',
+                input: 'text',
+                inputLabel: 'Masukkan Nama Lengkap Anda',
+                inputPlaceholder: 'Nama Pemesan...',
+                background: '#18181b',
+                color: '#fff',
+                confirmButtonColor: '#bef264',
+                confirmButtonText: 'PROSES KE WA',
+                inputValidator: (value) => {
+                    if (!value) return 'Nama tidak boleh kosong!';
+                }
+            });
+
+            if (name) {
+                const phone = "6285161182132"; 
+                let message = `*PESANAN BARU - ENDEISME*\n`;
+                message += `------------------------------\n`;
+                message += `*Nama:* ${name}\n\n`;
+                
+                let totalAll = 0;
+                cart.forEach((item, i) => {
+                    const subtotal = item.price * item.qty;
+                    totalAll += subtotal;
+                    message += `${i+1}. *${item.title}*\n`;
+                    message += `   Size: ${item.size} | Jml: ${item.qty}\n`;
+                    message += `   Sub: IDR ${subtotal.toLocaleString('id-ID')}\n\n`;
+                });
+
+                message += `------------------------------\n`;
+                message += `*TOTAL ESTIMASI: Rp ${totalAll.toLocaleString('id-ID')}*\n\n`;
+                message += `Mohon info ketersediaan stok & ongkirnya ya.`;
+
+                const encoded = encodeURIComponent(message);
+                window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
+            }
+        }
+
+        // Inisialisasi awal
+        renderCart();
     </script>
 </body>
 </html>
